@@ -1,17 +1,15 @@
 
 import express from 'express'
 import type { Express } from 'express'
+import type { Config } from './types'
 
-export const runApp = (config) => {
+import { getProxyHandler } from './proxy'
+
+export const runApp = (config: Config) => {
   const app = express()
   init(app)
 
-  app.use('/', (req, res, next) => {
-    res.json({
-      code: 0,
-      msg: 'ok',
-    })
-  })
+  app.use('/', getProxyHandler(config.enableCache, config.host))
 
   return app
 }

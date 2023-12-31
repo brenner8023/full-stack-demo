@@ -32,7 +32,11 @@ importers:
 
   packages/components: {}
 
-  packages/curl-proxy: {}
+  packages/curl-proxy:
+    dependencies:
+      '@venus/utils':
+        specifier: workspace:^
+        version: link:../utils
 
   packages/utils: {}
 
